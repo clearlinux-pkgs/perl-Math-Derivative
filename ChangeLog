@@ -1,0 +1,48 @@
+Revision history for Math-Derivative
+
+1.01
+	15 Aug 2017
+	- Move Math::Utils dependancy from 1.06 to 1.10. A test
+	  was failing in 21-secondd.t because the older version's
+	  pl_evaluate() wasn't handling lists back then.
+1.00
+	9 Aug 2017
+	- Add tests, more POD clean-up, send to CPAN.
+	18 Jul 2017
+	- Add references for the central and forward difference
+	  methods.
+	- Have not been able to find a reference for the second
+	  derivative difference method, annoyingly.
+	- Minimum perl version set to 5.10.1.
+	17 Jul 2017
+	- Added a forward difference approximation method (bug was filed
+	  for this as user Maitraya Baliyan was expecting it instead of
+	  the central difference approximation method that Derivative1()
+	  used).
+	- Added names forwarddiff() and centraldiff() for export.
+	  Derivative1() is aliased to centraldiff(), so as not to break
+	  old code.
+	- Likewise, seconddx() is now the exported name of the second
+	  derivative difference method, with Derivative2() aliased to it.
+	- There is now an EXPORT tag, ':all'.
+	- POD is more descriptive, has more examples, and uses the
+	  new names.
+0.04
+	13 Jul 2015
+	- Whitespace and POD clean up. Functions are described
+	  individually.
+	- Added error checking for the array lengths.
+	- Modernized the use of EXPORT, added a minimum perl version, etc.
+0.03
+	26 May 2015
+	- Remove pod-coverage.t from the test directory.
+0.02
+	17 May 2015
+	- Get package up to more-or-less current standards using
+	  Module-Starter. Tests and documentation updates come
+	  with the next release.
+
+0.01    26 Dec 1995
+        First version, released on an unsuspecting world.
+
+
