@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Derivative
 Version  : 1.01
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-derivative-perl/libmath-derivative-perl_1.01-1.debian.tar.xz
@@ -23,6 +23,7 @@ Numeric 1st and 2nd order differentiation.
 Summary: dev components for the perl-Math-Derivative package.
 Group: Development
 Provides: perl-Math-Derivative-devel = %{version}-%{release}
+Requires: perl-Math-Derivative = %{version}-%{release}
 
 %description dev
 dev components for the perl-Math-Derivative package.
@@ -41,7 +42,7 @@ license components for the perl-Math-Derivative package.
 cd ..
 %setup -q -T -D -n Math-Derivative-1.01 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Derivative-1.01/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Derivative-1.01/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
@@ -67,6 +68,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Derivative
 cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/deblicense_copyright
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -88,3 +90,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/perl-Math-Derivative/LICENSE
+/usr/share/package-licenses/perl-Math-Derivative/deblicense_copyright
