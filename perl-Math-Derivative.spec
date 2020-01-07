@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Derivative
 Version  : 1.01
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-derivative-perl/libmath-derivative-perl_1.01-1.debian.tar.xz
@@ -12,6 +12,7 @@ Summary  : 'Numeric 1st and 2nd order differentiation.'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Math-Derivative-license = %{version}-%{release}
+Requires: perl-Math-Derivative-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Math::Utils)
 
@@ -37,18 +38,28 @@ Group: Default
 license components for the perl-Math-Derivative package.
 
 
+%package perl
+Summary: perl components for the perl-Math-Derivative package.
+Group: Default
+Requires: perl-Math-Derivative = %{version}-%{release}
+
+%description perl
+perl components for the perl-Math-Derivative package.
+
+
 %prep
 %setup -q -n Math-Derivative-1.01
-cd ..
-%setup -q -T -D -n Math-Derivative-1.01 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/libmath-derivative-perl_1.01-1.debian.tar.xz
+cd %{_builddir}/Math-Derivative-1.01
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Math-Derivative-1.01/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Math-Derivative-1.01/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -58,7 +69,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -67,8 +78,8 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Derivative
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/deblicense_copyright
+cp %{_builddir}/Math-Derivative-1.01/LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/d20876af29feb11cd2018d05085f5b74a2a9d91e
+cp %{_builddir}/Math-Derivative-1.01/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/233d7dbd23bbd625947a02fb2f4af90343cbcf79
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,7 +92,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Math/Derivative.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -89,5 +99,9 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Math-Derivative/LICENSE
-/usr/share/package-licenses/perl-Math-Derivative/deblicense_copyright
+/usr/share/package-licenses/perl-Math-Derivative/233d7dbd23bbd625947a02fb2f4af90343cbcf79
+/usr/share/package-licenses/perl-Math-Derivative/d20876af29feb11cd2018d05085f5b74a2a9d91e
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Math/Derivative.pm
