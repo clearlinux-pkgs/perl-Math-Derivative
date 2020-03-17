@@ -4,7 +4,7 @@
 #
 Name     : perl-Math-Derivative
 Version  : 1.01
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-derivative-perl/libmath-derivative-perl_1.01-1.debian.tar.xz
@@ -79,7 +79,7 @@ make TEST_VERBOSE=1 test
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Math-Derivative
 cp %{_builddir}/Math-Derivative-1.01/LICENSE %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/d20876af29feb11cd2018d05085f5b74a2a9d91e
-cp %{_builddir}/Math-Derivative-1.01/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/233d7dbd23bbd625947a02fb2f4af90343cbcf79
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Math-Derivative/233d7dbd23bbd625947a02fb2f4af90343cbcf79
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -104,4 +104,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Math/Derivative.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Math/Derivative.pm
