@@ -7,7 +7,7 @@
 #
 Name     : perl-Math-Derivative
 Version  : 1.01
-Release  : 30
+Release  : 31
 URL      : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JG/JGAMBLE/Math-Derivative-1.01.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libm/libmath-derivative-perl/libmath-derivative-perl_1.01-1.debian.tar.xz
